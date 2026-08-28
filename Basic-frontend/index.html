@@ -5,22 +5,85 @@
 </head>
 
 <body>
-    <p>"Rishaant labs sota"</p>
-    <button id = "getallupdates">GetUpdate</button>
-    <button id = "postupdates">PostUpdate</button>
+    <p>"Rishaanth labs sota"</p>
+    <button id="getallupdates">GetUpdate</button>
+    <button id="postupdates">PostUpdate</button>
 
     <div id="output">
 
     </div>
 
-    <script>
-      const url_get = "https://rishaantlabs-sota.onrender.com/getallupdates";
+    <br> <br>
+    <form id="postsota">
+        <label> Name:
+            <input type="text" id="name">
+            </input>
+        </label>
 
-      document.getElementById("getallupdates").addEventListener("click",()=>{
-        fetch(url_get).then(response => response.json()).then(data => {console.log(data);})
-      })
+        <label> Version:
+            <input type="text" id="version">
+            </input>
+        </label>
+
+        <label> Type:
+            <input type="text" id="type">
+            </input>
+        </label>
+
+        <label> BuildDate
+            <input type="text" id="builddate">
+            </input>
+        </label>
+
+        <label> changelog
+            <input type="text" id="changelog">
+            </input>
+        </label>
+
+        <label> url
+            <input type="text" id="url">
+            </input>
+        </label>
+        <button type="submit">send</button>
+
+    </form>
+
+    <script>
+        const url_get = "https://rishaantlabs-sota.onrender.com/getallupdates";
+        const url_post = "https://rishaantlabs-sota.onrender.com/addupdate";
+        document.getElementById("getallupdates").addEventListener("click", () => {
+            fetch(url_get).then(response => response.json()).then(data => {
+                console.log(data);
+                document.getElementById("output").innerHTML = `<pre> ${JSON.stringify(data, ["name", "type"], 3)} <\pre>`;
+            })
+        })
+        document.getElementById("postsota").addEventListener("submit", (event) => {
+            event.preventDefault();
+            const data = {
+                name: document.getElementById("name").value,
+                version: document.getElementById("version").value,
+                type: document.getElementById("type").value,
+                builddate: document.getElementById("builddate").value,
+
+                changelog: document.getElementById("changelog").value,
+
+                url: document.getElementById("url").value
+
+            }
+            fetch(url_post, {
+                method: "POST",
+                headers: { "Content-type": "application/json" },
+                body: JSON.stringify(data)
+            }).then(response => response.text()).then(data => console.log(data));
+
+
+
+ 
+        })
+
     </script>
-    
+
 
 </body>
+
 </html>
