@@ -2,7 +2,9 @@ const express = require("express")
 const app = express()
 const mysql = require("mysql2/promise")
 const fs = require("fs")
+const cors = require("cors")
 app.use(express.json())
+app.use(cors())
 require("dotenv").config();
 const port = process.env.PORT || 5000;
 /*.  

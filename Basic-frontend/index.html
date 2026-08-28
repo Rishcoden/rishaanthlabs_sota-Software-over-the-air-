@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<head>
+    <title> Testing frontend for sota</title>
+</head>
+
+<body>
+    <p>"Rishaant labs sota"</p>
+    <button id = "getallupdates">GetUpdate</button>
+    <button id = "postupdates">PostUpdate</button>
+
+    <div id="output">
+
+    </div>
+
+    <script>
+      const url_get = "https://rishaantlabs-sota.onrender.com/getallupdates";
+
+      document.getElementById("getallupdates").addEventListener("click",()=>{
+        fetch(url_get).then(response => response.json()).then(data => {console.log(data);})
+      })
+    </script>
+    
+
+</body>
+</html>
