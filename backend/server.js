@@ -4,7 +4,10 @@ const mysql = require("mysql2/promise")
 const fs = require("fs")
 app.use(express.json())
 require("dotenv").config();
+const port = process.env.PORT || 5000;
 /*.  
+
+
 
 
 updates 
@@ -32,7 +35,7 @@ const createdatabase =  async ()=>{
             "database": process.env.db_database,
             "dateStrings": true,
             "ssl" : { 
-                 "ca" : fs.readFileSync("../ca.pem") 
+                 "ca" : fs.readFileSync(__dirname+"/../ca.pem") 
                 ,"rejectUnauthorized" : true}
         }
     )
@@ -75,6 +78,6 @@ app.get("/",(req,res)=>{
     res.send("Api is running")
 })
 
-app.listen(5000,()=>{
-    console.log("Server is running..")
+app.listen(port,()=>{
+    console.log(`Server is running ${port}`)
 })
