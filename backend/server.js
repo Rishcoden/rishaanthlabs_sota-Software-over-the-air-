@@ -75,7 +75,7 @@ app.delete("/deleteupdate/:id",async(req, res)=>{
 
 
 app.get("/",(req,res)=>{
-    res.send("Api is running")
+    res.send("Rishaanthlabs server is running")
 })
 
 app.listen(port,()=>{
