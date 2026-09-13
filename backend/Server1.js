@@ -31,15 +31,12 @@ const createdatabase =  async ()=>{
     try{
     db = await mysql.createConnection(
         {
-            "host" :  process.env.db_host,
-            "user" : process.env.db_user,
-            "port" : process.env.db_port,
-            "password" : process.env.db_password,
-            "database": process.env.db_database,
+            "host" :  "localhost",
+            "user" : "root",
+            "password" : "rishaanth2005",
+            "database": "sota",
             "dateStrings": true,
-            "ssl" : { 
-                 "ca" : fs.readFileSync(__dirname+"/../ca.pem") 
-                ,"rejectUnauthorized" : true}
+            
         }
     )
     await db.execute ("create table if not exists updates (id int auto_increment primary key, name varchar(100),version decimal(10,5),type varchar(100),builddate datetime , changelog text , url text not null);")

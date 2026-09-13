@@ -54,7 +54,7 @@
         document.getElementById("getallupdates").addEventListener("click", () => {
             fetch(url_get).then(response => response.json()).then(data => {
                 console.log(data);
-                document.getElementById("output").innerHTML = `<pre> ${JSON.stringify(data, ["name", "type"], 3)} <\pre>`;
+                document.getElementById("output").innerHTML = `<pre> ${JSON.stringify(data, null, 3)} <\pre>`;
             })
         })
         document.getElementById("postsota").addEventListener("submit", (event) => {
